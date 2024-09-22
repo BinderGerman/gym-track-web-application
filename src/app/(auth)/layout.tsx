@@ -16,7 +16,7 @@ export default function AuthLayout() {
 
 
   return (
-    <div className="flex justify-center items-center md:h-[100vh] md:px-10 lg:px-26">
+    <div className="flex justify-center items-center sm:h-[100dvh] md:px-10 lg:px-26">
       <div className="container h-[85vh] flex-col justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         {/* ===== Image ===== */}
         <div className="relative hidden h-full flex-col p-10 text-white lg:flex">
@@ -40,8 +40,8 @@ export default function AuthLayout() {
           </div>
         </div>
 				{/* ===== Form ===== */}
-				<div className="pt-10 lg:p-8 flex items-center md:h-[85vh] bg-secondary">
-          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[450px]">
+				<div className="pt-10 lg:p-8 flex items-center sm:h-[85dvh] bg-secondary">
+          <div className="mx-auto flex flex-col justify-center w-full sm:w-[450px]">
 						<Card className="border-none bg-secondary">
               <CardHeader className="text-white text-center">
                 <CardTitle>{layoutData?.title}</CardTitle>
