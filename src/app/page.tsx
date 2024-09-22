@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/button";
+import { CardDemo } from "@/components/card-demo";
+
 
 
 export default function Home() {
@@ -16,7 +17,7 @@ export default function Home() {
           at, ligula. Suspendisse aliquet, sem ut cursus luctus, ipsum leo
           elementum sem, vitae aliquet metus eros vitae nisl. Sed vitae urna.
         </p>
-        <Button>Probando Shadcn</Button>
+        <CardDemo />
       </main>
     </div>
   );
