@@ -1,3 +1,4 @@
+//components and utils
 import SignInPage from "@/app/(auth)/sign-in/page";
 import SignUpPage from "@/app/(auth)/sign-up/page";
 import ForgotPasswordPage from "@/app/(auth)/forgot-password/page";

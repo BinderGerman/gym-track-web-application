@@ -1,7 +1,17 @@
 'use client';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { usePathname } from "next/navigation";
+
+//components and utils
 import { authLayoutConfig } from "@/utils/constants/auth-layout-config";
+
+//ui
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardHeader, 
+  CardTitle 
+} from "@/components/ui/card";
 
 export default function AuthLayout() {
   const pathName = usePathname()

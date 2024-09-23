@@ -35,7 +35,7 @@ export const signUpSchema = z
 		path: ["confirmPassword"],
 	});
 
-	export const forgotPaswordSchema = z
+export const forgotPaswordSchema = z
 	.object({
 		email: z
 			.string()

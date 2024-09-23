@@ -5,6 +5,8 @@ import { useState } from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+
+//components and utils
 import { signUpSchema } from "@/utils/schemas/auth-schemas";
 
 //ui
@@ -19,6 +21,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { LoaderCircle } from "lucide-react";
+
 
 // Resta la lógica de la página
 const SignUpPage = () => {
