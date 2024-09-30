@@ -5,9 +5,13 @@ import { useState } from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 //components and utils
 import { signUpSchema } from "@/utils/schemas/auth-schemas";
+import { createUser, setDocument, updateUser } from "@/services/auth";
+import { IUser } from "@/interfaces/user-interface";
+
 
 //ui
 import {
@@ -47,13 +51,52 @@ const SignUpPage = () => {
 
   // ===== Sign Up =====
   const onSubmit = async (user: z.infer<typeof signUpSchema>) => {
-    console.log(user);
     
-    setTimeout(() => {
-      setLoading(false);
+    setLoading(true)
+
+  
+
+    try {
+      const res = await createUser(user)
+      await updateUser({ displayName: user.firstName + " " + user.lastName })
+      user.uid = res.user.uid
+      await createUserInDB(user as IUser)
+
+      toast.success('Usuario creado exitosamente')
+
       router.push('/dashboard')
-    }, 2000);
+
+    } catch (error: any) {
+      // Completar con la lógica de error
+
+      toast.error(error.message)
+      console.log('Este es el error ', error);
+      
+    } finally {
+      setLoading(false)
+    }
+    
   };
+
+  const createUserInDB = async (user: IUser) => {
+    const path = `users/${user.uid}`
+
+    
+    setLoading(true)
+
+    try {
+      delete user.password
+      delete user.confirmPassword
+      await setDocument(path, user)
+
+    } catch (error) {
+
+      console.log(error);
+      
+    } finally {
+      setLoading(false)
+    }     
+  }  
 
   return (
     <>
@@ -180,6 +223,7 @@ const SignUpPage = () => {
             )}
             Crear Cuenta
           </Button>
+          {/* <Toaster position="top-right" richColors /> */}
         </form>
         {/* ===== Sign Up ===== */}
         <p className="text-cente text-sm text-muted-foreground">

@@ -9,7 +9,7 @@ export const NavbarHome = () => {
       <h1>Gym Track</h1>
 			<div className="flex justify-end gap-3">
 				<Link href='/sign-in' className={`${buttonVariants({ variant: "outline" })} border border-primary`}>Iniciar Sesión</Link>
-				<Link href='/sig-up' className={buttonVariants({ variant: "default" })}>Registrarse</Link>
+				<Link href='/sign-up' className={buttonVariants({ variant: "default" })}>Registrarse</Link>
 			</div>
     </div>
   );

@@ -1,4 +1,4 @@
-export interface AuthLayoutConfig {
+export interface IAuthLayout {
 	path: string;
 	title: string;
 	description: string;
