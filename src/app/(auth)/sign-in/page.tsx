@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 
 //components and utils
 import { signInSchema } from "@/utils/schemas/auth-schemas";
+import { signIn } from "@/services/auth";
 
 //ui
 import {
@@ -21,9 +22,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { LoaderCircle } from "lucide-react";
+import { toast } from "sonner";
 
 
-// Resta la lógica de la página
 const SignInPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter()
@@ -43,13 +44,23 @@ const SignInPage = () => {
 
   // ===== Sign In =====
   const onSubmit = async (user: z.infer<typeof signInSchema>) => {
-    console.log(user);
     
-    setTimeout(() => {
-      setLoading(false);
-      router.push('/dashboard')
-    }, 2000);
-  };
+    setLoading(true)
+
+    try {
+      const res = await signIn(user)
+
+      if (res.user) {
+        toast.success('Sesión iniciada exitosamente')
+        router.push('/dashboard')
+      }
+      
+    } catch (error: any) {
+      toast.error(error.message)
+    } finally {
+      setLoading(false)
+    }
+  } 
 
   return (
     <>

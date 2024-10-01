@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 
 //components and utils
 import { forgotPaswordSchema } from "@/utils/schemas/auth-schemas";
+import { sendResetEmail } from "@/services/auth";
 
 //ui
 import {
@@ -21,6 +22,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { LoaderCircle } from "lucide-react";
+import { toast } from "sonner";
+
 
 
 
@@ -40,16 +43,18 @@ const ForgotPasswordPage = () => {
 
 
 
-    const onSubmit = () => {
-      console.log('Pasa algo')
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
+    const onSubmit = async (user: z.infer<typeof forgotPaswordSchema>) => {
+
+      setLoading(true)
+
+      try {
+        await sendResetEmail(user.email)
+        toast.success('Se ha enviado el email con el link para restablecer la contraseña')
         router.push('/sign-in')
-      }, 2000);
+      } catch (error: any) {
+        toast.error(error.message)
+      }
     }
-
-
 
     return (
       <Form {...form}>
@@ -82,7 +87,7 @@ const ForgotPasswordPage = () => {
           {loading && (
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
           )}
-          Iniciar Sesión
+          Recuperar Contraseña
         </Button>
       </form>
       {/* ===== Sign Up ===== */}

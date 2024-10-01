@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword, 
   updateProfile,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "@firebase/auth";
 
 // ===== Auth variables =====
@@ -24,10 +25,14 @@ export const updateUser = (user: { displayName?: string | null; photoURL?: strin
   if(auth.currentUser) return updateProfile(auth.currentUser, user )
 }
 
-
 // ===== Sign In with Email and Password =====
 export const signIn = async (user: {email: string, password: string}) => {
 	return await signInWithEmailAndPassword(auth, user.email, user.password)
+}
+
+// ===== Send email to reset user's password =====
+export const sendResetEmail = (email: string) => {
+  return sendPasswordResetEmail(auth, email)
 }
 
 

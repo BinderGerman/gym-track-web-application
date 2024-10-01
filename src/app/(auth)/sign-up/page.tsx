@@ -27,7 +27,6 @@ import { Button } from "@/components/ui/button";
 import { LoaderCircle } from "lucide-react";
 
 
-// Resta la lógica de la página
 const SignUpPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter()
