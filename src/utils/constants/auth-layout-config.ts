@@ -2,9 +2,9 @@
 import SignInPage from "@/app/(auth)/sign-in/page";
 import SignUpPage from "@/app/(auth)/sign-up/page";
 import ForgotPasswordPage from "@/app/(auth)/forgot-password/page";
-import { AuthLayoutConfig } from "@/interfaces/auth-layout-interface";
+import { IAuthLayout } from "@/interfaces/auth-layout-interface";
 
-export const authLayoutConfig: AuthLayoutConfig[] = [
+export const authLayoutConfig: IAuthLayout[] = [
     {
         path: "/sign-in",
         title: "Iniciar Sesión",

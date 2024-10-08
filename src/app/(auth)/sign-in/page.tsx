@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 //components and utils
 import { signInSchema } from "@/utils/schemas/auth-schemas";
 import { signIn } from "@/services/auth";
+import { useUserStore } from "@/store/user-store";
 
 //ui
 import {
@@ -25,7 +26,10 @@ import { LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
 
 
+
+
 const SignInPage = () => {
+  const { fetchUser } = useUserStore()
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter()
 
@@ -50,7 +54,10 @@ const SignInPage = () => {
     try {
       const res = await signIn(user)
 
+      console.log(res.user.uid) 
+
       if (res.user) {
+        await fetchUser(res.user.uid)
         toast.success('Sesión iniciada exitosamente')
         router.push('/dashboard')
       }

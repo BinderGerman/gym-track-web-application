@@ -5,7 +5,7 @@ export interface IUser {
   image?: string;
 	firstName: string;
 	lastName: string;
-  email: string;
+ 	email: string;
 	password?: string;
 	confirmPassword?: string;
   createdAt?: Timestamp	

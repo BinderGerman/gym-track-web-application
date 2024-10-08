@@ -9,8 +9,9 @@ import { toast } from "sonner";
 
 //components and utils
 import { signUpSchema } from "@/utils/schemas/auth-schemas";
-import { createUser, setDocument, updateUser } from "@/services/auth";
+import { createUser, setDocument } from "@/services/auth";
 import { IUser } from "@/interfaces/user-interface";
+import { useUserStore } from "@/store/user-store";
 
 
 //ui
@@ -27,7 +28,9 @@ import { Button } from "@/components/ui/button";
 import { LoaderCircle } from "lucide-react";
 
 
+
 const SignUpPage = () => {
+  const { fetchUser } = useUserStore()
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter()
 
@@ -57,9 +60,9 @@ const SignUpPage = () => {
 
     try {
       const res = await createUser(user)
-      await updateUser({ displayName: user.firstName + " " + user.lastName })
       user.uid = res.user.uid
       await createUserInDB(user as IUser)
+      await fetchUser(res.user.uid)
 
       toast.success('Usuario creado exitosamente')
 
@@ -87,6 +90,8 @@ const SignUpPage = () => {
       delete user.password
       delete user.confirmPassword
       await setDocument(path, user)
+
+     
 
     } catch (error) {
 
