@@ -14,7 +14,6 @@ export const NavbarDashboard =  () => {
     const user = useUserStore((state) => state.user);
     const fetchUser = useUserStore((state) => state.fetchUser);
 
-    console.log('Hola estos son los datos del usuario', user)
 
     useEffect(() => {
       const localUser = localStorage.getItem('user')
