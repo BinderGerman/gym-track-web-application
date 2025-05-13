@@ -1,14 +1,13 @@
 //components and utils
-import SignInPage from "@/app/(auth)/sign-in/page";
-import SignUpPage from "@/app/(auth)/sign-up/page";
-import ForgotPasswordPage from "@/app/(auth)/forgot-password/page";
+import SignInPage from "@/app/(auth)/sign-in/[[...rest]]/page";
+import SignUpPage from "@/app/(auth)/sign-up/[[...rest]]/page";
 import { IAuthLayout } from "@/interfaces/auth-layout-interface";
 
 export const authLayoutConfig: IAuthLayout[] = [
     {
         path: "/sign-in",
         title: "Iniciar Sesión",
-        description: "Iniciar sesión en tu cuenta",
+        description: "Inicia sesión con tu cuenta",
         image: "/dumbbells.jpg",
         component: SignInPage
     },
@@ -18,12 +17,5 @@ export const authLayoutConfig: IAuthLayout[] = [
         description: "Crea una cuenta para comenzar",
         image: "/weight-discs.jpg",
         component: SignUpPage
-    },
-    {
-        path: "/forgot-password",
-        title: "Recuperar Contraseña",
-        description: "Recupera tu contraseña",
-        image: "/kettlebells.jpg",
-        component: ForgotPasswordPage
     }
 ]

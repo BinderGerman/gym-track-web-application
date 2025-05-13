@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { Toaster } from 'sonner';
+import {
+  ClerkProvider,
+} from '@clerk/nextjs'
+import { esES } from '@clerk/localizations'
+import { dark } from '@clerk/themes'
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -20,11 +25,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="dark">
-      <body className={`${montserrat.variable} antialiased`}>
-        {children}
-        <Toaster position="top-right" richColors />
-      </body>
-    </html>
+    <ClerkProvider localization={esES} appearance={{ baseTheme: dark }}>
+      <html lang="es" className="dark">
+        <body className={`${montserrat.variable} antialiased`}>
+          {children}
+          <Toaster position="top-right" richColors />
+        </body>
+      </html>
+    </ClerkProvider>
+      
   );
 }
