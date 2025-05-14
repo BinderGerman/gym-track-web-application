@@ -5,13 +5,7 @@ import { usePathname } from "next/navigation";
 import { authLayoutConfig } from "@/utils/constants/auth-layout-config";
 
 //ui
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardHeader, 
-  CardTitle 
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function AuthLayout() {
   const pathName = usePathname()
@@ -24,46 +18,38 @@ export default function AuthLayout() {
 
   const { component: Component } = layoutData; 
 
-
   return (
-    <div className="flex justify-center items-center sm:h-[100dvh] md:px-10 lg:px-26">
-      <div className="container h-[85vh] flex-col justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-background">
+      <div className="container h-[90vh] flex-col justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0 rounded-lg overflow-hidden shadow-lg">
         {/* ===== Image ===== */}
         <div className="relative hidden h-full flex-col p-10 text-white lg:flex">
-          {/* ===== Div with background Image ===== */}
           <div 
             className="absolute inset-0 opacity-20"
             style={{
               backgroundImage: `url(${layoutData?.image})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              
             }}
           ></div>
-	
 
           <div className="relative z-20 mt-auto">
-            <p className="text-lg">
+            <footer className="text-lg">
               &ldquo;Una App pensada para Personal Trainers&ldquo;
-            </p>
-            <footer className="text-sm">Jhon Doe</footer>
+            </footer>
           </div>
         </div>
-				{/* ===== Form ===== */}
-				<div className="pt-10 lg:p-8 flex items-center sm:h-[85dvh] bg-secondary">
-          <div className="mx-auto flex flex-col justify-center w-full sm:w-[450px]">
-						<Card className="border-none bg-secondary">
-              <CardHeader className="text-white text-center">
-                <CardTitle>{layoutData?.title}</CardTitle>
-                <CardDescription>{layoutData?.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
+
+        {/* ===== Form ===== */}
+        <div className="flex items-center justify-center h-full bg-secondary">
+          <div className="w-full max-w-[450px] p-4">
+            <Card className="border-none bg-secondary">
+              <CardContent className="p-0">
                 <Component />
               </CardContent>
             </Card>
           </div>
         </div>
-			</div>
-		</div>
+      </div>
+    </div>
   );
 }
