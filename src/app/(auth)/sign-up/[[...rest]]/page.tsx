@@ -8,7 +8,6 @@ const SignUpPage = () => {
         path="/sign-up"
         routing="path"
         signInUrl="/sign-in"
-        afterSignUpUrl="/dashboard"
         appearance={{
           elements: {
             formButtonPrimary: 
@@ -35,7 +34,7 @@ const SignUpPage = () => {
           },
         }}
       />
-          </div>
+    </div>
   );
 };
 
