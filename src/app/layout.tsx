@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider localization={esES} appearance={{ baseTheme: dark }}>
-      <html lang="es" className="dark">
+      <html lang="es" className="dark" style={{ colorScheme: "dark" }}>
         <body className={`${montserrat.variable} antialiased`}>
           {children}
           <Toaster position="top-right" richColors />
