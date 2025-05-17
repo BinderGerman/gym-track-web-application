@@ -12,11 +12,15 @@ import { Pencil, Trash2 } from "lucide-react"; // Usando iconos de lucide-react
 import React from "react"; // Importar React
 
 interface Student {
-  id: string; // Asumimos un ID para cada estudiante
-  firstName: string;
-  lastName: string;
-  startDate: string; // Podríamos formatear la fecha aquí o en la celda
-  // ... otros campos si es necesario para mostrar en la tabla
+    id: string,
+    nombre: string,
+    apellido: string,
+    fechaNacimiento: Date,
+    fechaInicio: Date,
+    peso: number,
+    objetivo: string,
+    lesionesEnfermedades: string,
+    observaciones: string,
 }
 
 interface StudentsTableProps {
@@ -43,9 +47,9 @@ const StudentsTable: React.FC<StudentsTableProps> = ({
       <TableBody>
         {students.map((student) => (
           <TableRow key={student.id}>
-            <TableCell>{student.firstName}</TableCell>
-            <TableCell>{student.lastName}</TableCell>
-            <TableCell>{student.startDate}</TableCell>
+            <TableCell>{student.nombre}</TableCell>
+            <TableCell>{student.apellido}</TableCell>
+            <TableCell>{student.fechaInicio.toLocaleDateString()}</TableCell>
             <TableCell >
               <Button
                 variant="ghost"
