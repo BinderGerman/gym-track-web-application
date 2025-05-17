@@ -66,7 +66,11 @@ const formSchema = z.object({
   observaciones: z.string().optional(),
 });
 
-export function StudentForm() {
+interface StudentFormProps {
+  onSuccess: () => void; // se ejecuta al guardar exitosamente
+}
+
+export function StudentForm({ onSuccess }: StudentFormProps) {
   const [edad, setEdad] = useState<number | undefined>(undefined);
   const [fechaInput, setFechaInput] = useState("");
 
@@ -150,6 +154,13 @@ export function StudentForm() {
     // Puedes calcular la edad aquí antes de enviar los datos a Firebase
     const edadCalculada = calculateAge(values.fechaNacimiento);
     console.log({ ...values, edad: edadCalculada });
+
+    // Aquí puedes agregar la lógica para guardar el estudiante en Firebase
+    // Por ejemplo:
+    // await saveStudent(values);
+
+    // Llamar a onSuccess para notificar que el formulario se ha guardado
+    onSuccess();
   }
 
   return (
@@ -358,7 +369,7 @@ export function StudentForm() {
           )}
         />
 
-        <Button type="submit">Guardar Estudiante</Button>
+        <Button type="submit">Guardar Alumno</Button>
       </form>
     </Form>
   );

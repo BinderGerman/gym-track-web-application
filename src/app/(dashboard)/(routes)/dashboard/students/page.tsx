@@ -38,7 +38,12 @@ const mockStudents = [
 ];
 
 const StudentsPage = () => {
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isSheetOpen, setSheetOpen] = useState(false);
+
+  const handleStudentCreated = () => {
+    setSheetOpen(false); // Cierra el sheet
+    // Podés agregar lógica para actualizar la lista
+  };
 
   return (
     <div className="flex-1 space-y-4 p-8 pt-6">
@@ -50,9 +55,9 @@ const StudentsPage = () => {
         />
         <div className="flex items-center space-x-2">
           {/* Botón para añadir estudiante que activa el Sheet */}
-          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+          <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
-              <Button>Añadir Alumno</Button>
+              <Button onClick={() => setSheetOpen(true)}>Añadir Alumno</Button>
             </SheetTrigger>
             <SheetContent className="w-[400px] sm:w-[600px] overflow-y-auto">
               <SheetHeader>
@@ -62,7 +67,7 @@ const StudentsPage = () => {
                 </SheetDescription>
               </SheetHeader>
               <div className="pt-4">
-                <StudentForm />
+                <StudentForm onSuccess={handleStudentCreated} />
               </div>
             </SheetContent>
           </Sheet>
